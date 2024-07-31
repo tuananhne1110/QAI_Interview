@@ -11,6 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Sao chép mã nguồn ứng dụng vào container
 COPY . .
 
+# Sao chép thư mục weights vào container
+COPY logistic_regression_weights.h5 /app/Question_4/
+
 # Mở cổng ứng dụng Flask
 EXPOSE 5000
 
