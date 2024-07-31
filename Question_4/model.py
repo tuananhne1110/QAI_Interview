@@ -1,8 +1,17 @@
 import numpy as np
 import pickle
 
-class NeuralNetwork:
-    def __init__(self, d_in, d1, d2, d_out, lr=1e-3):
+def __init__(self, d_in, d1, d2, d_out, lr=1e-3):
+        """
+        Initialize the neural network.
+
+        Args:
+            d_in (int): Dimension of the input layer.
+            d1 (int): Dimension of the first hidden layer.
+            d2 (int): Dimension of the second hidden layer.
+            d_out (int): Dimension of the output layer.
+            lr (float): Learning rate for the network. Default is 1e-3.
+        """
         self.d_in = d_in
         self.d1 = d1
         self.d2 = d2
@@ -11,6 +20,7 @@ class NeuralNetwork:
         self.init_weights()
 
     def init_weights(self):
+        """Initialize weights and biases for the network."""
         self.w1 = np.random.randn(self.d1, self.d_in)
         self.b1 = np.random.randn(self.d1, 1)
 
@@ -21,13 +31,38 @@ class NeuralNetwork:
         self.b3 = np.random.randn(self.d_out, 1)
 
     def relu(self, x):
+        """
+        Apply ReLU activation function.
+
+        Args:
+            x (numpy.ndarray): Input array.
+
+        Returns:
+            numpy.ndarray: Output array with ReLU applied.
+        """
         return np.maximum(x, 0)
 
     def soft_max(self, x):
+        """
+        Apply softmax activation function.
+
+        Args:
+            x (numpy.ndarray): Input array.
+
+        Returns:
+            numpy.ndarray: Output array with softmax applied.
+        """
         x = x - np.max(x, axis=0)
         return np.exp(x) / np.sum(np.exp(x), axis=0)
 
     def forward(self, x, y=None):
+        """
+        Perform forward pass of the network.
+
+        Args:
+            x (numpy.ndarray): Input data.
+            y (numpy.ndarray, optional): True labels. Default is None.
+        """
         self.x = x
         if y is not None:
             self.y = y
