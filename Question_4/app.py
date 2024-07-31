@@ -9,7 +9,7 @@ app.config['UPLOAD_FOLDER'] = os.path.join('Question_4', 'static', 'uploads')
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
 
 # Load the pre-trained model
-model = LogisticRegressionAPI("Question_4\logistic_regression_weights.h5")
+model = LogisticRegressionAPI("Question_4/logistic_regression_weights.h5")
 
 def allowed_file(filename):
     """Check if the file has an allowed extension."""
