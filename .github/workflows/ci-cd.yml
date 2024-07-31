@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest  # Changed to Linux runner as it's more common for Docker
 
     steps:
     - name: Checkout code
@@ -48,4 +48,14 @@ jobs:
       with:
         context: Question_4
         push: true
-        tags: tuananhne1110/flask-app:latest  
+        tags: tuananhne1110/flask-app:latest
+
+    - name: Print working directory and list files
+      run: |
+        cd Question_4
+        pwd
+        ls -R
+
+    - name: Run tests in Docker
+      run: |
+        docker run --rm tuananhne1110/flask-app:latest pytest
