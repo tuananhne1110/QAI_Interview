@@ -18,6 +18,15 @@ nn = load_model()
 
 # Function to preprocess the uploaded image
 def preprocess_image(image):
+    """
+    Preprocess the uploaded image for prediction.
+
+    Args:
+        image (PIL.Image.Image): The uploaded image.
+
+    Returns:
+        numpy.ndarray: The preprocessed image as a NumPy array.
+    """
     image = image.convert('L')  # Convert to grayscale
     image = image.resize((28, 28))  # Resize to 28x28
     image = np.array(image)  # Convert to NumPy array
@@ -39,29 +48,29 @@ def predict():
     if file.filename == '':
         return "No selected file"
     if file:
-        # Đọc file ảnh và chuyển đổi thành đối tượng PIL Image
+        # Read the image file and convert it to a PIL Image object
         image = Image.open(file)
         processed_image = preprocess_image(image)
         
-        # Đảm bảo thư mục static tồn tại
+        # Ensure the static directory exists
         if not os.path.exists('./Question_4/static'):
             os.makedirs('./Question_4/static')
         
-        # Xác định đường dẫn để lưu hình ảnh
+        # Define the path to save the image
         image_path = os.path.join('./Question_4/static', 'uploaded_image.png')
         
         try:
-            # Lưu hình ảnh với định dạng PNG
+            # Save the image in PNG format
             image.save(image_path, format='PNG')
             
-            # Dự đoán kết quả
+            # Make a prediction
             nn.forward(processed_image)
             prediction = np.argmax(nn.out, axis=1)[0]
             
-            # Xác định URL hình ảnh
+            # Determine the URL of the image
             image_url = url_for('static', filename='uploaded_image.png')
             
-            # Hiển thị kết quả dự đoán
+            # Display the prediction results
             return render_template('result.html', prediction=int(prediction), image_url=image_url)
         except Exception as e:
             return f"An error occurred: {str(e)}"
