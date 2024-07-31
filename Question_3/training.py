@@ -55,7 +55,7 @@ for i in range(epochs):
         epoch=i, loss=loss, accuracy=accuracy, triplet_loss=triplet_loss_mean))
 
 # Save model
-nn.save_model('neural_network.pkl')
+nn.save_model('./Question_4/neural_network.pkl')
 
 # Test model
 def test_model(nn, x_test, y_test):
