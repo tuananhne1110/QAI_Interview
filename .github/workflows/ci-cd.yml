@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # Sử dụng Windows runner
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
@@ -19,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.8'  
+        python-version: '3.8'
 
     - name: Install dependencies
       run: |
@@ -48,4 +48,4 @@ jobs:
       with:
         context: Question_4
         push: true
-        tags: tuananhne1110/publicapi:latest  
+        tags: tuananhne1110/flask-app:latest  
