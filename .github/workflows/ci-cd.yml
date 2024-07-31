@@ -35,7 +35,7 @@ jobs:
     - name: Build Docker image
       run: |
         cd Question_4
-        docker build -t tuananhne1110/publicapi:latest .
+        docker build -t tuananhne1110/flask-app:latest .
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
