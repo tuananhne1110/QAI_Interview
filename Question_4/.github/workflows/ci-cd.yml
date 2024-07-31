@@ -23,18 +23,18 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd Qestion_4
+        cd Question_4
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
     - name: Run tests
       run: |
-        cd Qestion_4
+        cd Question_4
         pytest
 
     - name: Build Docker image
       run: |
-        cd Qestion_4
+        cd Question_4
         docker build -t tuananhne1110/publicapi:latest .
 
     - name: Log in to Docker Hub
@@ -46,6 +46,6 @@ jobs:
     - name: Push Docker image
       uses: docker/build-push-action@v3
       with:
-        context: Qestion_4
+        context: Question_4
         push: true
         tags: tuananhne1110/publicapi:latest  
