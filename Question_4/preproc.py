@@ -5,12 +5,31 @@ class PreProc:
         pass
 
     def one_hot_encode(self, y, levels):
+        """
+        One-hot encode the labels.
+
+        Args:
+            y (numpy.ndarray): Array of labels.
+            levels (int): Number of unique levels/classes.
+
+        Returns:
+            numpy.ndarray: One-hot encoded labels.
+        """
         res = np.zeros((len(y), levels))
         for i in range(len(y)):
             res[i, y[i]] = 1
         return res
 
     def normalize(self, x):
+        """
+        Normalize the input data.
+
+        Args:
+            x (numpy.ndarray): Input data.
+
+        Returns:
+            numpy.ndarray: Normalized data.
+        """
         return x / np.max(x)
 
     def read_csv(self, fname):
